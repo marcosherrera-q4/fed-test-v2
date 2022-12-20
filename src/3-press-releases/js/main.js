@@ -22,13 +22,19 @@ var prWidget = {
         this.complete();
     },
 
-    beforeRenderItems(content){
+    beforeRenderItems: function(content){
+        console.log('this is content',content)
         content.filteredItems = [];
+        console.log('this is content.filteredItems',content.filteredItems)
 
         content.items.forEach(function (el, ind, arr) {
-            content.filteredItems.push(el)
+            if(el.tags.includes('earnings')){
+                console.log('There is an item with')
+            } else{
+                content.filteredItems.push(el)
+            }
         });
-
+        content.items = content.filteredItems
         return content;
     },
 
@@ -41,7 +47,38 @@ var prWidget = {
 
     complete: function() {
         // Add Slick Slider here (https://kenwheeler.github.io/slick/)
+        $('.module-press-release').slick({
+            arrows: true,
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                dots: true,
+                arrows: true,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: true,
+                }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+            ]
+        });
     }
 };
 
-pressReleaseWidget.init();
+prWidget.init();

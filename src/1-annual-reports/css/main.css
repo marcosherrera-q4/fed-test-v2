@@ -73,4 +73,24 @@
 }
 
 /* Begin styling the report items here! */
-.reports {}
+.reports {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0px 30px;
+
+}
+.reports_item{
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px){
+  .reports{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px){
+  .reports{
+    grid-template-columns: 1fr;
+  }
+}
